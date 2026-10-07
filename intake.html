@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Client Intake &amp; Assessment | Core Wellness Solutions</title>
+  <meta name="description" content="Complete your Core Wellness Solutions client intake and assessment before your first session. Sent securely; only Tavia sees it.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2F6B6B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M24 7.5A12 12 0 1 0 24 24.5' fill='none' stroke='%2374A84E' stroke-width='6.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .stepper { display: flex; gap: 6px; list-style: none; padding: 0; margin: 0 0 28px; counter-reset: st; }
+    .stepper li { flex: 1; counter-increment: st; font-size: .9rem; color: var(--muted); border-top: 5px solid var(--line); padding-top: 8px; }
+    .stepper li::before { content: counter(st) ". "; }
+    .stepper li.done { border-color: var(--green); }
+    .stepper li.now { border-color: var(--deep-teal); color: var(--deep-teal); font-weight: 600; }
+    @media (max-width: 560px) { .stepper li span { display: none; } .stepper li.now span { display: inline; } }
+    .step[hidden] { display: none; }
+    .yn { display: grid; gap: 10px; }
+    .yn-row { display: grid; gap: 8px; padding: 14px 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); }
+    @media (min-width: 720px) { .yn-row { grid-template-columns: 1fr auto; align-items: center; } }
+    .yn-row legend { float: left; padding: 0; font-size: 1.02rem; }
+    .yn-opts { display: flex; gap: 8px; }
+    .yn-opts label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 16px; border: 2px solid var(--line); border-radius: 999px; cursor: pointer; }
+    .yn-opts input { width: 20px; height: 20px; accent-color: var(--deep-teal); }
+    .waiver-text { max-height: 280px; overflow: auto; padding: 18px 20px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); font-size: .98rem; }
+    .waiver-text p:last-child { margin: 0; }
+    .sig-input { font: italic 500 1.8rem var(--serif) !important; }
+    .step-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pills label { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 6px 16px; background: #fff; border: 2px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 400; margin: 0; color: var(--ink); }
+    .pills label:has(input:checked) { border-color: var(--deep-teal); background: var(--mist); }
+    .pills input { width: 20px; height: 20px; accent-color: var(--deep-teal); margin: 0; }
+    .field .pills label { display: inline-flex; }
+    .rep summary { cursor: pointer; font-weight: 500; color: var(--teal); min-height: 44px; display: flex; align-items: center; }
+    .embed { width: 100%; min-height: 1200px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topline" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Core Wellness Solutions home"><img src="assets/img/logo.png" alt="Core Wellness Solutions" width="520" height="260"></a>
+    <a class="btn small ghost" href="index.html">Back to site</a>
+  </div>
+</header>
+
+<main id="main" class="wrap" style="max-width:860px;padding-bottom:72px">
+  <div class="page-head">
+    <h1>Client Intake &amp; Assessment</h1>
+    <p>Please complete before your first session. Your answers help us build a safe program around you. It takes about 10 minutes, and caregivers are welcome to fill it out with or for a loved one.</p>
+    <p style="margin:0">Prefer paper? <a href="assets/forms/cws-client-intake-assessment.pdf" download>Download the printable intake (PDF)</a> or see <a href="forms.html">all client forms</a>.</p>
+  </div>
+
+  <div class="notice">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4Zm0 6a3 3 0 0 1 3 3v1h1v6H8v-6h1v-1a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z"/></svg>
+    <span>Your answers are encrypted and sent to a HIPAA-compliant service. They're used only to plan your sessions and are never shared without your permission, except in an emergency. <a href="privacy.html">Privacy notice</a></span>
+  </div>
+
+  <div id="embed-slot"></div>
+
+  <form id="intake" class="form" novalidate>
+    <ol class="stepper" aria-label="Progress">
+      <li class="now"><span>Contact</span></li>
+      <li><span>Health</span></li>
+      <li><span>Movement &amp; goals</span></li>
+      <li><span>Sign</span></li>
+    </ol>
+
+    <!-- 1 -->
+    <fieldset class="step panel form" data-step="0" style="border:1px solid var(--line)">
+      <legend class="sr-only">Contact and emergency information</legend>
+      <h2 style="font-size:1.6rem">Contact &amp; emergency information</h2>
+      <div class="form-grid two">
+        <div class="field"><label for="i-name">Full name</label><input id="i-name" name="full_name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="i-dob">Date of birth</label><input id="i-dob" name="dob" type="date" required></div>
+        <div class="field"><label for="i-height">Height</label><input id="i-height" name="height" type="text" placeholder="5 ft 6 in"></div>
+        <div class="field"><label for="i-weight">Weight</label><input id="i-weight" name="weight" type="text" placeholder="Optional"></div>
+        <div class="field"><label for="i-phone">Phone</label><input id="i-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="i-email">Email</label><input id="i-email" name="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="i-occ">Occupation / retired from</label><input id="i-occ" name="occupation" type="text"></div>
+        <div class="field"><label for="i-res">Community / residence</label><span class="hint">If you live in a senior living community.</span><input id="i-res" name="residence" type="text"></div>
+      </div>
+      <div class="form-grid two">
+        <div class="field"><label for="i-ec">Emergency contact</label><input id="i-ec" name="emergency_name" type="text" required></div>
+        <div class="field"><label for="i-ecr">Relationship</label><input id="i-ecr" name="emergency_relationship" type="text"></div>
+        <div class="field"><label for="i-ecp">Emergency phone</label><input id="i-ecp" name="emergency_phone" type="tel" required></div>
+      </div>
+      <div class="form-grid two">
+        <div class="field"><label for="i-dr">Primary physician</label><input id="i-dr" name="physician" type="text"></div>
+        <div class="field"><label for="i-drp">Physician phone</label><input id="i-drp" name="physician_phone" type="tel"></div>
+      </div>
+    </fieldset>
+
+    <!-- 2 -->
+    <fieldset class="step panel form" data-step="1" hidden style="border:1px solid var(--line)">
+      <legend class="sr-only">Health screening</legend>
+      <h2 style="font-size:1.6rem">Health screening</h2>
+      <p style="color:var(--muted)">If you answer yes to any question below, we will ask for written clearance from your physician before your first session.</p>
+      <div class="yn" id="yn"></div>
+      <div class="field">
+        <fieldset><legend>Check anything that applies to you</legend>
+          <div class="checks two"><label class="check"><input type="checkbox" name="conditions" value="Fall in the last 12 months">Fall in the last 12 months</label><label class="check"><input type="checkbox" name="conditions" value="Osteoporosis / osteopenia">Osteoporosis / osteopenia</label><label class="check"><input type="checkbox" name="conditions" value="Joint replacement (hip, knee, shoulder)">Joint replacement (hip, knee, shoulder)</label><label class="check"><input type="checkbox" name="conditions" value="Surgery in last 12–24 months">Surgery in last 12–24 months</label><label class="check"><input type="checkbox" name="conditions" value="Blood thinners">Blood thinners</label><label class="check"><input type="checkbox" name="conditions" value="Diabetes (Type 1 or 2)">Diabetes (Type 1 or 2)</label><label class="check"><input type="checkbox" name="conditions" value="Arthritis">Arthritis</label><label class="check"><input type="checkbox" name="conditions" value="Neuropathy / numbness">Neuropathy / numbness</label><label class="check"><input type="checkbox" name="conditions" value="Stroke or TIA">Stroke or TIA</label><label class="check"><input type="checkbox" name="conditions" value="Pacemaker or implanted device">Pacemaker or implanted device</label><label class="check"><input type="checkbox" name="conditions" value="Asthma / breathing condition">Asthma / breathing condition</label><label class="check"><input type="checkbox" name="conditions" value="Hernia">Hernia</label><label class="check"><input type="checkbox" name="conditions" value="Back or neck disc issues">Back or neck disc issues</label><label class="check"><input type="checkbox" name="conditions" value="Pregnant or postpartum (under 12 months)">Pregnant or postpartum (under 12 months)</label><label class="check"><input type="checkbox" name="conditions" value="Uses cane, walker, or wheelchair">Uses cane, walker, or wheelchair</label></div>
+        </fieldset>
+      </div>
+      <div class="field"><label for="i-inj">Current injuries, pain, or areas we should avoid</label><textarea id="i-inj" name="injuries"></textarea></div>
+      <div class="field"><label for="i-meds">Medications or supplements your coach should know about</label><textarea id="i-meds" name="medications"></textarea></div>
+    </fieldset>
+
+    <!-- 3 -->
+    <fieldset class="step panel form" data-step="2" hidden style="border:1px solid var(--line)">
+      <legend class="sr-only">Movement, goals and preferences</legend>
+      <h2 style="font-size:1.6rem">Movement &amp; goals</h2>
+      <div class="field"><fieldset><legend>Current activity level</legend><div class="pills"><label><input type="radio" name="activity_level" value="Mostly inactive" required>Mostly inactive</label><label><input type="radio" name="activity_level" value="1–2 days / week">1–2 days / week</label><label><input type="radio" name="activity_level" value="3–4 days / week">3–4 days / week</label><label><input type="radio" name="activity_level" value="5+ days / week">5+ days / week</label></div></fieldset></div>
+      <div class="field"><label for="i-now">What do you do now for exercise or activity?</label><textarea id="i-now" name="current_activity"></textarea></div>
+      <div class="field"><label for="i-hard">Movements or positions that are hard, painful, or that you'd like to avoid</label><span class="hint">Getting up from the floor, stairs, reaching overhead, etc.</span><textarea id="i-hard" name="hard_movements"></textarea></div>
+      <div class="form-grid">
+        <div class="field"><label for="i-g1">Goal 1</label><input id="i-g1" name="goal_1" type="text" required placeholder="Walk to the mailbox without my cane"></div>
+        <div class="field"><label for="i-g2">Goal 2</label><input id="i-g2" name="goal_2" type="text"></div>
+        <div class="field"><label for="i-g3">Goal 3</label><input id="i-g3" name="goal_3" type="text"></div>
+      </div>
+      <div class="field"><fieldset><legend>Timeline</legend><div class="pills"><label><input type="radio" name="timeline" value="1–3 months">1–3 months</label><label><input type="radio" name="timeline" value="3–6 months">3–6 months</label><label><input type="radio" name="timeline" value="6–12 months">6–12 months</label><label><input type="radio" name="timeline" value="Long-term lifestyle">Long-term lifestyle</label></div></fieldset></div>
+      <div class="field"><fieldset><legend>How ready are you to make a change?</legend><span class="hint">1 is not yet, 10 is ready now.</span><div class="pills"><label><input type="radio" name="readiness" value="1">1</label><label><input type="radio" name="readiness" value="2">2</label><label><input type="radio" name="readiness" value="3">3</label><label><input type="radio" name="readiness" value="4">4</label><label><input type="radio" name="readiness" value="5">5</label><label><input type="radio" name="readiness" value="6">6</label><label><input type="radio" name="readiness" value="7">7</label><label><input type="radio" name="readiness" value="8">8</label><label><input type="radio" name="readiness" value="9">9</label><label><input type="radio" name="readiness" value="10">10</label></div></fieldset></div>
+
+      <h3 style="font-size:1.25rem;margin-top:12px">Daily life</h3>
+      <div class="field"><fieldset><legend>Most of my day I'm</legend><div class="pills"><label><input type="radio" name="day" value="Sitting">Sitting</label><label><input type="radio" name="day" value="On my feet">On my feet</label><label><input type="radio" name="day" value="Doing physical work">Doing physical work</label></div></fieldset></div>
+      <div class="field"><fieldset><legend>Average sleep</legend><div class="pills"><label><input type="radio" name="sleep" value="Under 6 hrs">Under 6 hrs</label><label><input type="radio" name="sleep" value="6–7 hrs">6–7 hrs</label><label><input type="radio" name="sleep" value="7–8 hrs">7–8 hrs</label><label><input type="radio" name="sleep" value="8+ hrs">8+ hrs</label></div></fieldset></div>
+      <div class="field"><fieldset><legend>Stress level</legend><div class="pills"><label><input type="radio" name="stress" value="Low">Low</label><label><input type="radio" name="stress" value="Moderate">Moderate</label><label><input type="radio" name="stress" value="High">High</label><label><input type="radio" name="stress" value="Very high">Very high</label></div></fieldset></div>
+
+      <h3 style="font-size:1.25rem;margin-top:12px">Program preferences</h3>
+      <div class="field"><fieldset><legend>I'm interested in</legend><div class="pills"><label><input type="radio" name="interest" value="Personal training" required>Personal training</label><label><input type="radio" name="interest" value="Assisted stretch therapy">Assisted stretch therapy</label><label><input type="radio" name="interest" value="Both">Both</label></div></fieldset></div>
+      <div class="field"><fieldset><legend>Sessions per week</legend><div class="pills"><label><input type="radio" name="sessions_per_week" value="1">1</label><label><input type="radio" name="sessions_per_week" value="2">2</label><label><input type="radio" name="sessions_per_week" value="3">3</label><label><input type="radio" name="sessions_per_week" value="4+">4+</label></div></fieldset></div>
+      <div class="field"><label for="i-times">Best days and times</label><input id="i-times" name="best_times" type="text" placeholder="Tuesday and Thursday mornings"></div>
+    </fieldset>
+
+    <!-- 4 -->
+    <fieldset class="step panel form" data-step="3" hidden style="border:1px solid var(--line)">
+      <legend class="sr-only">Acknowledgment, waiver and signature</legend>
+      <h2 style="font-size:1.6rem">Acknowledgment &amp; waiver</h2>
+      <div class="waiver-text" tabindex="0" aria-label="Acknowledgment and waiver text">
+        <p><b>Acknowledgment.</b> The information above is accurate and complete to the best of my knowledge. I will tell my coach right away about any pain, discomfort, or change in my health, medications, or physician guidance. My health information is used only to plan my sessions and is not shared without my permission, except in an emergency.</p>
+        <p><b>Assumption of risk.</b> Exercise and hands-on assisted stretching involve inherent risks, including strains and sprains, joint or soft-tissue injury, falls, dizziness, fainting, changes in blood pressure or heart rate, and in rare cases heart attack, stroke, or death. I knowingly and voluntarily assume these risks.</p>
+        <p><b>Not medical care.</b> My coach is a fitness and stretch professional, not a physician, physical therapist, or licensed medical provider, and the services are not medical treatment. If I answered yes to any screening question, I will provide physician clearance before participating.</p>
+        <p><b>Release.</b> To the fullest extent permitted by Indiana law, I release Core Wellness Solutions LLC from claims arising from my participation, including claims caused by its negligence. This does not apply to gross negligence or intentional misconduct.</p>
+        <p><b>Emergency care.</b> If I need emergency care, I authorize Core Wellness to call 911 and contact my emergency contact.</p>
+        <p>The full Liability Waiver, Release &amp; Assumption of Risk is signed at or before your first session.</p>
+      </div>
+      <label class="check"><input type="checkbox" name="acknowledgment" required>The information I gave is accurate, and I have read the acknowledgment and waiver above.</label>
+      <label class="check"><input type="checkbox" name="privacy_ack" required>I have received the <a href="privacy.html" target="_blank">privacy notice</a>.</label>
+      <div class="form-grid two">
+        <div class="field"><label for="i-sig">Client signature (type your full name)</label><input class="sig-input" id="i-sig" name="signature" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="i-sigdate">Date</label><input id="i-sigdate" name="signature_date" type="date" required></div>
+      </div>
+      <details class="rep">
+        <summary>Signing for someone else?</summary>
+        <div class="form-grid two" style="margin-top:12px">
+          <div class="field"><label for="i-rep">Legal representative name</label><input id="i-rep" name="representative" type="text"></div>
+          <div class="field"><label for="i-reprel">Relationship / authority</label><input id="i-reprel" name="representative_relationship" type="text" placeholder="POA, guardian"></div>
+        </div>
+      </details>
+    </fieldset>
+
+    <p class="form-status" role="status" id="intake-status"></p>
+    <div class="step-nav">
+      <button class="btn ghost" type="button" id="back" hidden>Back</button>
+      <span></span>
+      <button class="btn" type="button" id="fwd">Continue</button>
+    </div>
+  </form>
+</main>
+
+<footer class="site-footer" style="padding:28px 0">
+  <div class="wrap">
+    <div class="footer-base" style="margin-top:0;border-top:0;padding-top:0">
+      <span>&copy; <span data-year></span> Core Wellness Solutions LLC. Avon, Indiana &amp; surrounding areas.</span>
+      <span class="credit">Designed by <a href="https://www.editmelo.com/" target="_blank" rel="noopener">Edit Me Lo</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  var I = (window.CWS_CONFIG.intake || {}), B = window.CWS_CONFIG.business || {};
+  var form = document.getElementById("intake");
+
+  // Preferred: a HIPAA provider's own form, embedded
+  if (I.embedUrl) {
+    form.hidden = true;
+    var f = document.createElement("iframe");
+    f.className = "embed"; f.src = I.embedUrl; f.title = "Secure intake and waiver form";
+    document.getElementById("embed-slot").appendChild(f);
+    return;
+  }
+
+  var Q = [
+    "Has a doctor ever said you have a heart condition or high blood pressure?",
+    "Do you feel pain in your chest at rest, during daily activities, or when you exercise?",
+    "Do you lose balance because of dizziness, or have you lost consciousness in the last 12 months?",
+    "Have you been diagnosed with any other chronic medical condition?",
+    "Are you currently taking prescribed medication for a chronic condition?",
+    "Do you have a bone, joint, or soft-tissue problem that could be made worse by activity?",
+    "Has a doctor said you should only do medically supervised physical activity?"
+  ];
+  document.getElementById("yn").innerHTML = Q.map(function (q, i) {
+    return '<fieldset class="yn-row"><legend>' + q + '</legend><div class="yn-opts">' +
+      '<label><input type="radio" name="q' + i + '" value="Yes" required>Yes</label>' +
+      '<label><input type="radio" name="q' + i + '" value="No">No</label></div></fieldset>';
+  }).join("");
+  document.getElementById("i-sigdate").valueAsDate = new Date();
+
+  var steps = [].slice.call(form.querySelectorAll(".step"));
+  var dots = [].slice.call(form.querySelectorAll(".stepper li"));
+  var back = document.getElementById("back"), fwd = document.getElementById("fwd"), status = document.getElementById("intake-status");
+  var at = 0;
+
+  function show(n) {
+    at = n;
+    steps.forEach(function (s, i) { s.hidden = i !== n; });
+    dots.forEach(function (d, i) { d.className = i < n ? "done" : i === n ? "now" : ""; if (i === n) d.setAttribute("aria-current", "step"); else d.removeAttribute("aria-current"); });
+    back.hidden = n === 0;
+    fwd.textContent = n === steps.length - 1 ? "Sign and send" : "Continue";
+    status.textContent = ""; status.className = "form-status";
+    var h = steps[n].querySelector("h2"); h.tabIndex = -1; h.focus();
+  }
+  function valid(step) {
+    var bad = [].slice.call(step.querySelectorAll("input,select,textarea")).filter(function (el) { return !el.checkValidity(); });
+    if (bad.length) { bad[0].reportValidity(); bad[0].focus(); return false; }
+    return true;
+  }
+  back.addEventListener("click", function () { show(at - 1); });
+  fwd.addEventListener("click", function () {
+    if (!valid(steps[at])) return;
+    if (at < steps.length - 1) return show(at + 1);
+    submit();
+  });
+
+  function submit() {
+    // Health data only goes to a BAA-covered endpoint. Nothing is stored in the browser.
+    if (!I.endpoint || !I.endpointIsHipaaCompliant) {
+      status.className = "form-status warn";
+      status.textContent = "Secure online intake isn't switched on yet, so nothing was sent. Tavia will go over this form with you in person" + (B.phone ? ", or call " + B.phone : "") + ".";
+      console.warn("[CWS] Intake blocked: set intake.endpoint and endpointIsHipaaCompliant in assets/js/config.js");
+      return;
+    }
+    fwd.disabled = true;
+    fetch(I.endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.reset();
+        form.innerHTML = '<div class="panel"><h2 style="font-size:1.6rem" tabindex="-1" id="done">You\'re all set</h2><p>Tavia has your intake. She\'ll review it before your first session, where you\'ll also sign the full liability waiver.</p><a class="btn" href="index.html">Back to the site</a></div>';
+        document.getElementById("done").focus();
+      })
+      .catch(function () {
+        status.className = "form-status err";
+        status.textContent = "That didn't send. Your answers are still here. Check your connection and press Sign and send again.";
+        fwd.disabled = false;
+      });
+  }
+})();
+</script>
+</body>
+</html>

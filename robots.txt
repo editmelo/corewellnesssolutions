@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /intake.html
+Sitemap: https://www.corewellnesssolutions.com/sitemap.xml

@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events &amp; Live Sessions | Core Wellness Solutions, Avon IN</title>
+  <meta name="description" content="Upcoming chair exercise classes, fall prevention screenings and wellness events from Core Wellness Solutions in Avon and Hendricks County, Indiana. Save a seat or follow along live.">
+  <link rel="canonical" href="https://www.corewellnesssolutions.com/clipboard.html">
+  <meta name="theme-color" content="#2F6B6B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M24 7.5A12 12 0 1 0 24 24.5' fill='none' stroke='%2374A84E' stroke-width='6.5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .tabs { display: flex; gap: 8px; border-bottom: 2px solid var(--line); margin-bottom: 32px; }
+    .tab { min-height: var(--tap); padding: 10px 20px; border: 0; background: none; font: 500 1.1rem var(--sans); color: var(--muted); border-bottom: 4px solid transparent; margin-bottom: -2px; cursor: pointer; }
+    .tab[aria-selected="true"] { color: var(--deep-teal); border-color: var(--green); }
+    .board-grid { display: grid; gap: 32px; }
+    @media (min-width: 960px) { .board-grid { grid-template-columns: 1.15fr 1fr; gap: 48px; } }
+    .event .note { font-size: .92rem; }
+    .signin-list { list-style: none; margin: 12px 0; padding: 0; columns: 2; font: 400 1.15rem/1.9 var(--serif); }
+    .signin-list li { border-bottom: 1px solid var(--line); break-inside: avoid; }
+    .signin-row { display: flex; gap: 10px; }
+    .signin-row input { flex: 1; }
+
+    /* Live session stage */
+    .stage { background: var(--paper); }
+    .stage:fullscreen { padding: 3vh 4vw; overflow: auto; display: flex; flex-direction: column; justify-content: center; }
+    .stage-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; justify-content: space-between; margin-bottom: 20px; }
+    .stage-top .field { min-width: 260px; }
+    .stage-grid { display: grid; gap: 24px; align-items: center; }
+    @media (min-width: 900px) { .stage-grid { grid-template-columns: 1.5fr 1fr; gap: 40px; } }
+    .stage .board { padding-top: 50px; }
+    .stage .rx { box-shadow: none; }
+    .stage .rx-title { font-size: clamp(1.8rem, 4.5vw, 3rem); }
+    .stage .rx-ind, .stage .rx-meta { font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+    .stage .rx-ind q { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+    .stage-steps { margin: 14px 0 0; padding-left: 1.4em; font-size: clamp(1.05rem, 1.8vw, 1.35rem); }
+    .stage-steps li { margin: 6px 0; }
+    .timer { display: grid; place-items: center; text-align: center; }
+    .ring { position: relative; width: min(300px, 70vw); aspect-ratio: 1; }
+    .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring circle { fill: none; stroke-width: 10; }
+    .ring .track { stroke: var(--line); }
+    .ring .prog { stroke: var(--green); stroke-linecap: round; transition: stroke-dashoffset .25s linear; }
+    .ring .time { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; font: 500 clamp(3rem, 9vw, 5rem)/1 var(--serif); color: var(--deep-teal); }
+    .ring .time small { display: block; font: 500 1rem var(--sans); color: var(--muted); margin-top: 8px; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+    .controls .btn { min-width: 120px; }
+    .up-next { margin-top: 18px; color: var(--muted); font-size: 1.05rem; }
+    .up-next b { color: var(--deep-teal); font-weight: 500; }
+    .progress-dots { display: flex; gap: 6px; justify-content: center; margin-top: 14px; }
+    .progress-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+    .progress-dots i.on { background: var(--deep-teal); }
+    .kbd-hint { font-size: .9rem; color: var(--muted); text-align: center; margin-top: 10px; }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topline" aria-hidden="true"></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Core Wellness Solutions home"><img src="assets/img/logo.png" alt="Core Wellness Solutions" width="520" height="260"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Menu
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html#communities">Communities</a></li>
+        <li><a href="index.html#individuals">Private sessions</a></li>
+        <li><a href="index.html#rx">Rx cards</a></li>
+        <li><a href="clipboard.html" aria-current="true">Events &amp; live sessions</a></li>
+        <li><a href="forms.html">Client forms</a></li>
+      </ul>
+      <a class="btn small" href="index.html#book">Book a free consult</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div class="page-head">
+    <h1>The digital clipboard</h1>
+    <p>See what's coming up and save a seat, or follow along with a live class on any screen.</p>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Clipboard views">
+    <button class="tab" role="tab" id="tab-board" aria-controls="panel-board" aria-selected="true">Event board</button>
+    <button class="tab" role="tab" id="tab-live" aria-controls="panel-live" aria-selected="false" tabindex="-1">Live session</button>
+  </div>
+
+  <!-- Event board -->
+  <section id="panel-board" role="tabpanel" aria-labelledby="tab-board" style="padding-bottom:72px">
+    <div class="board-grid">
+      <div class="board">
+        <div class="sheet">
+          <h2 style="font-size:1.6rem;margin-bottom:4px">Upcoming sessions</h2>
+          <p class="sheet-sub">Times are Eastern. Open to residents, families and the public unless noted. New dates post first on <a href="https://www.instagram.com/corewellness.llc/" target="_blank" rel="noopener">Instagram</a>.</p>
+          <ul class="event-list" data-events="12" id="board-events"></ul>
+        </div>
+      </div>
+
+      <div>
+        <form class="panel form" id="seat-form" aria-labelledby="seat-title">
+          <h2 id="seat" style="font-size:1.6rem;margin:0"><span id="seat-title">Save a seat</span></h2>
+          <div class="field"><label for="seat-event">Event</label><select id="seat-event" name="event" required></select></div>
+          <div class="form-grid two">
+            <div class="field"><label for="seat-name">Name</label><input id="seat-name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="seat-count">How many people</label><input id="seat-count" name="count" type="number" min="1" max="6" value="1" required></div>
+          </div>
+          <div class="field"><label for="seat-contact">Phone or email</label><span class="hint">For a reminder the day before.</span><input id="seat-contact" name="contact" type="text" required></div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+          <button class="btn" type="submit">Save my seat</button>
+          <p class="form-status" role="status"></p>
+        </form>
+
+        <div class="panel" style="margin-top:24px">
+          <h2 style="font-size:1.4rem;margin-bottom:4px">Day-of sign-in</h2>
+          <p style="color:var(--muted);font-size:.98rem">For Tavia's tablet at the door. First names only. The list stays on this device until you export or clear it.</p>
+          <form class="signin-row" id="signin-form">
+            <label class="sr-only" for="signin-name">First name and last initial</label>
+            <div class="field" style="flex:1"><input id="signin-name" type="text" placeholder="First name, last initial" autocomplete="off" maxlength="40"></div>
+            <button class="btn" type="submit">Sign in</button>
+          </form>
+          <p aria-live="polite" style="margin:12px 0 0"><b id="signin-count">0</b> signed in today</p>
+          <ol class="signin-list" id="signin-list"></ol>
+          <div class="btn-row">
+            <button class="btn small ghost" type="button" id="signin-export">Export list (CSV)</button>
+            <button class="btn small ghost" type="button" id="signin-clear">Clear list</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live session -->
+  <section id="panel-live" role="tabpanel" aria-labelledby="tab-live" hidden style="padding-bottom:72px">
+    <div class="stage" id="stage">
+      <div class="stage-top">
+        <div class="field">
+          <label for="routine">Routine</label>
+          <select id="routine"></select>
+        </div>
+        <button class="btn ghost small" type="button" id="fs">Full screen for TV</button>
+      </div>
+
+      <div class="stage-grid">
+        <div class="board"><div id="stage-card"></div></div>
+        <div class="timer">
+          <div class="ring" role="timer" aria-live="off" aria-label="Time remaining">
+            <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="prog" id="ring-prog" cx="60" cy="60" r="52"/></svg>
+            <div class="time"><span id="time">0:00</span><small id="move-of"></small></div>
+          </div>
+          <div class="controls">
+            <button class="btn ghost" type="button" id="prev">Back</button>
+            <button class="btn" type="button" id="play">Start</button>
+            <button class="btn ghost" type="button" id="next">Next</button>
+          </div>
+          <div class="progress-dots" id="dots" aria-hidden="true"></div>
+          <p class="up-next" id="up-next"></p>
+          <p class="kbd-hint">Space starts or pauses. Arrow keys move between cards.</p>
+          <p class="sr-only" aria-live="assertive" id="live-announce"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-base" style="margin-top:0;border-top:0;padding-top:0">
+      <span>&copy; <span data-year></span> Core Wellness Solutions LLC. Avon, Indiana.</span>
+      <span><a href="index.html">Home</a> &nbsp; <a href="forms.html">Client forms</a> &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="https://www.instagram.com/corewellness.llc/" target="_blank" rel="noopener">Instagram</a></span>
+      <span class="credit">Designed by <a href="https://www.editmelo.com/" target="_blank" rel="noopener">Edit Me Lo</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="action-bar">
+  <a class="btn" href="index.html#book">Book a session</a>
+  <a class="btn ghost" href="#seat" data-goto-board>Save a seat</a>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/rx-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/clipboard.js"></script>
+</body>
+</html>
