@@ -63,7 +63,7 @@ window.CWS_CONFIG = {
     // { name: "First L.", rating: 5, text: "...", when: "March 2026" }
   },
 
-  // Downloadable PDFs (forms.html + Communities section).
+  // Downloadable PDFs (/forms + Communities section).
   // ready: false shows the form as "coming soon" and does not link it.
   // To publish a draft: put the final PDF in assets/forms/ (same file name), add a
   // page-1 thumbnail in assets/forms/thumbs/, then set ready: true.
@@ -71,7 +71,7 @@ window.CWS_CONFIG = {
     { id: "intake", group: "first-visit", step: 1, ready: true,
       title: "Client Intake & Assessment", file: "assets/forms/cws-client-intake-assessment.pdf", thumb: "assets/forms/thumbs/cws-client-intake-assessment.jpg", pages: 3,
       who: "Every new client", desc: "Contact and emergency details, a health screening, your goals and how you like to train. Your answers shape a safe plan around you.",
-      online: "intake.html" },
+      online: "/intake" },
     { id: "waiver", group: "first-visit", step: 2, ready: false,
       title: "Liability Waiver, Release & Assumption of Risk", file: "assets/forms/cws-liability-waiver.pdf", thumb: "assets/forms/thumbs/cws-liability-waiver.jpg", pages: 2,
       who: "Every client", desc: "Required before any training or assisted stretch session, wherever it happens." },

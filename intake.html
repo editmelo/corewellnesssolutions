@@ -45,8 +45,8 @@
 <div class="topline" aria-hidden="true"></div>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="Core Wellness Solutions home"><img src="assets/img/logo.png" alt="Core Wellness Solutions" width="520" height="260"></a>
-    <a class="btn small ghost" href="index.html">Back to Site</a>
+    <a class="brand" href="/" aria-label="Core Wellness Solutions home"><img src="assets/img/logo.png" alt="Core Wellness Solutions" width="520" height="260"></a>
+    <a class="btn small ghost" href="/">Back to Site</a>
   </div>
 </header>
 
@@ -54,12 +54,12 @@
   <div class="page-head">
     <h1>Client Intake &amp; Assessment</h1>
     <p>Please complete before your first session. Your answers help us build a safe program around you. It takes about 10 minutes, and caregivers are welcome to fill it out with or for a loved one.</p>
-    <p style="margin:0">Prefer paper? <a href="assets/forms/cws-client-intake-assessment.pdf" download>Download the printable intake (PDF)</a> or see <a href="forms.html">all client forms</a>.</p>
+    <p style="margin:0">Prefer paper? <a href="assets/forms/cws-client-intake-assessment.pdf" download>Download the printable intake (PDF)</a> or see <a href="/forms">all client forms</a>.</p>
   </div>
 
   <div class="notice">
     <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4Zm0 6a3 3 0 0 1 3 3v1h1v6H8v-6h1v-1a3 3 0 0 1 3-3Zm0 2a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z"/></svg>
-    <span>Your answers are encrypted and sent to a HIPAA-compliant service. They're used only to plan your sessions and are never shared without your permission, except in an emergency. <a href="privacy.html">Privacy notice</a></span>
+    <span>Your answers are encrypted and sent to a HIPAA-compliant service. They're used only to plan your sessions and are never shared without your permission, except in an emergency. <a href="/privacy">Privacy notice</a></span>
   </div>
 
   <div id="embed-slot"></div>
@@ -151,7 +151,7 @@
         <p>The full Liability Waiver, Release &amp; Assumption of Risk is signed at or before your first session.</p>
       </div>
       <label class="check"><input type="checkbox" name="acknowledgment" required>The information I gave is accurate, and I have read the acknowledgment and waiver above.</label>
-      <label class="check"><input type="checkbox" name="privacy_ack" required>I have received the <a href="privacy.html" target="_blank">privacy notice</a>.</label>
+      <label class="check"><input type="checkbox" name="privacy_ack" required>I have received the <a href="/privacy" target="_blank">privacy notice</a>.</label>
       <div class="form-grid two">
         <div class="field"><label for="i-sig">Client signature (type your full name)</label><input class="sig-input" id="i-sig" name="signature" type="text" autocomplete="name" required></div>
         <div class="field"><label for="i-sigdate">Date</label><input id="i-sigdate" name="signature_date" type="date" required></div>
@@ -253,7 +253,7 @@
       .then(function (r) {
         if (!r.ok) throw new Error(r.status);
         form.reset();
-        form.innerHTML = '<div class="panel"><h2 style="font-size:1.6rem" tabindex="-1" id="done">You\'re all set</h2><p>Tavia has your intake. She\'ll review it before your first session, where you\'ll also sign the full liability waiver.</p><a class="btn" href="index.html">Back to the site</a></div>';
+        form.innerHTML = '<div class="panel"><h2 style="font-size:1.6rem" tabindex="-1" id="done">You\'re all set</h2><p>Tavia has your intake. She\'ll review it before your first session, where you\'ll also sign the full liability waiver.</p><a class="btn" href="/">Back to the site</a></div>';
         document.getElementById("done").focus();
       })
       .catch(function () {

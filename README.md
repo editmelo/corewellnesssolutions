@@ -1,8 +1,10 @@
 # Core Wellness Solutions website
 
-A static site with no build step. Upload the `site/` folder to any host (Netlify, Vercel, Cloudflare Pages, GoDaddy, etc.).
+A static site with no build step, deployed on Vercel from this repo.
 
-Preview locally: `cd site && python3 -m http.server 8765`, then open http://localhost:8765
+Preview locally: `npx serve .` from this folder, then open the address it prints. Use `serve` rather than `python3 -m http.server`, because only `serve` handles clean URLs.
+
+**Clean URLs:** pages are served without `.html` (`/forms`, `/clipboard`, `/intake`, `/privacy`), set by `cleanUrls` in `vercel.json`. Old `.html` links redirect automatically. Always link pages as `/name` (and `/#section` for the home page).
 
 ## Pages
 - `index.html`: Rx-pad path chooser (communities vs. individuals), community programs and proposal form, private sessions, Rx card gallery, clipboard teaser, Square booking, Google reviews and map, FAQ

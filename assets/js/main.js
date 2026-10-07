@@ -51,7 +51,7 @@
           (card.caution ? '<p class="caution">' + esc(card.caution) + '</p>' : '') +
           '<div class="rx-foot back-actions">' +
             '<button class="see-reverse" type="button">« Front</button>' +
-            '<a href="clipboard.html?card=' + encodeURIComponent(card.id) + '">Do it with a timer</a>' +
+            '<a href="/clipboard?card=' + encodeURIComponent(card.id) + '">Do it with a timer</a>' +
           '</div>' +
         '</div>' +
         '<div class="rx-refill"><span>REFILLS: UNLIMITED</span><span>CORE WELLNESS SOLUTIONS LLC</span></div>' +
