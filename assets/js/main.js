@@ -87,8 +87,8 @@
     org: {
       forText: "Senior living communities & workplaces",
       dose: "Recurring on-site sessions",
-      ind: "Residents who move more, fall less and look forward to class. Staff who get a real break too. I bring the equipment; you provide the room.",
-      primary: { href: "#proposal", text: "Request a proposal" },
+      ind: "Residents who move more, fall less and look forward to class. Staff who get a real break too. We bring the equipment; you provide the room.",
+      primary: { href: "#proposal", text: "Request a proposal", nav: "Request a Proposal" },
       secondary: { href: "#communities", text: "See programs" },
       other: "me", otherText: "Looking for private sessions instead?"
     },
@@ -96,7 +96,7 @@
       forText: "Older adults & caregivers",
       dose: "One free 15-minute consult",
       ind: "Feeling stiff, unsteady, or just want to keep doing what you love? Sessions happen at home or in your community, fully clothed, on a table or a chair.",
-      primary: { href: "#book", text: "Book a free consult" },
+      primary: { href: "#book", text: "Book a free consult", nav: "Book a Free Consult" },
       secondary: { href: "#individuals", text: "See private sessions" },
       other: "org", otherText: "Booking for a community or workplace?"
     }
@@ -108,7 +108,7 @@
     store.set("cws-path", path);
     $$("[data-nav-path]").forEach(function (a) { a.setAttribute("aria-current", a.dataset.navPath === path ? "true" : "false"); });
     $$("[data-path-cta]").forEach(function (a) {
-      var p = PATHS[path].primary; a.href = p.href; a.textContent = p.text;
+      var p = PATHS[path].primary; a.href = p.href; a.textContent = a.closest(".site-nav") ? p.nav : p.text;
     });
     if (!pad) return;
     var P = PATHS[path];
