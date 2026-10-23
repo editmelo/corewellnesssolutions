@@ -10,6 +10,8 @@
   };
 
   /* ---------- Shared Rx card markup ---------- */
+  // The Rx mark is drawn, not typed, so text-only readers never see a stray "R".
+  var RX_GLYPH = '<span class="rx-glyph" aria-hidden="true"><svg viewBox="0 0 26 32" width="26" height="32" focusable="false"><path d="M2.5 3.5h3M6 3.5v18M2.5 21.5H9M6 3.5h6.5a5.5 5.5 0 0 1 0 11H6M10.5 14.5l11 15M15 26l7-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
   function rxFront(card, opts) {
     opts = opts || {};
     var t = window.RX_TYPES[card.type];
@@ -23,7 +25,7 @@
     return '' +
       '<article class="rx rx-front" data-type="' + card.type + '"' + (opts.hidden ? ' aria-hidden="true"' : '') + '>' +
         '<div class="rx-inner">' +
-          '<div class="rx-head"><span class="rx-glyph" aria-hidden="true">R</span>' +
+          '<div class="rx-head">' + RX_GLYPH +
             '<div class="rx-brand">CORE WELLNESS SOLUTIONS<small>' + esc(t.label.toUpperCase()) + '</small></div>' +
             '<span class="rx-code">' + esc(card.id.replace("-", " · ")) + '</span></div>' +
           '<h3 class="rx-title">' + esc(card.title) + '</h3>' +
@@ -43,7 +45,7 @@
     return '' +
       '<article class="rx rx-back" data-type="' + card.type + '" aria-hidden="true">' +
         '<div class="rx-inner">' +
-          '<div class="rx-head"><span class="rx-glyph" aria-hidden="true">R</span>' +
+          '<div class="rx-head">' + RX_GLYPH +
             '<div class="rx-brand">DIRECTIONS<small>' + esc(t.label.toUpperCase()) + '</small></div>' +
             '<span class="rx-code">' + esc(card.id.replace("-", " · ")) + '</span></div>' +
           '<h3 class="rx-title">' + esc(card.title) + '</h3><hr class="rx-rule">' +
@@ -57,7 +59,7 @@
         '<div class="rx-refill"><span>REFILLS: UNLIMITED</span><span>CORE WELLNESS SOLUTIONS LLC</span></div>' +
       '</article>';
   }
-  window.CWS = { rxFront: rxFront, rxBack: rxBack, esc: esc, store: store };
+  window.CWS = { rxFront: rxFront, rxBack: rxBack, esc: esc, store: store, RX_GLYPH: RX_GLYPH };
 
   /* ---------- Mobile nav ---------- */
   var toggle = $(".nav-toggle"), nav = $("#site-nav");
@@ -72,12 +74,14 @@
   /* ---------- Contact details from config ---------- */
   var B = C.business || {};
   $$("[data-phone]").forEach(function (el) {
-    if (B.phone) { el.href = "tel:" + B.phone.replace(/[^\d+]/g, ""); el.textContent = el.dataset.phone === "label" ? B.phone : el.textContent; }
-    else if (el.dataset.fallback === "hide") el.hidden = true;
+    if (!B.phone) return;
+    var digits = B.phone.replace(/\D/g, ""); if (digits.length === 10) digits = "1" + digits;
+    el.href = "tel:+" + digits;
+    if (el.dataset.phone === "label") el.textContent = B.phone;
   });
   $$("[data-email]").forEach(function (el) {
-    if (B.email) { el.href = "mailto:" + B.email; if (el.dataset.email === "label") el.textContent = B.email; }
-    else el.hidden = true;
+    if (!B.email) return;
+    el.href = "mailto:" + B.email; if (el.dataset.email === "label") el.textContent = B.email;
   });
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -85,20 +89,25 @@
   var pad = $("#pad");
   var PATHS = {
     org: {
-      forText: "Senior living communities & workplaces",
-      dose: "Recurring on-site sessions",
-      ind: "Residents who move more, fall less and look forward to class. Staff who get a real break too. We bring the equipment; you provide the room.",
+      forText: "Senior living, corporate teams & first responders",
+      dose: "On-site sessions, recurring or one-time",
+      ind: "People who move more, hurt less and show up ready. Group sessions, one-on-one assisted stretch and monthly programs. We bring the equipment; you provide the room.",
       primary: { href: "#proposal", text: "Request a proposal", nav: "Request a Proposal" },
-      secondary: { href: "#communities", text: "See programs" },
-      other: "me", otherText: "Looking for private sessions instead?"
+      secondary: { href: "#organizations", text: "See programs" }
     },
     me: {
-      forText: "Older adults & caregivers",
-      dose: "One free 15-minute consult",
-      ind: "Feeling stiff, unsteady, or just want to keep doing what you love? Sessions happen at home or in your community, fully clothed, on a table or a chair.",
-      primary: { href: "#book", text: "Book a free consult", nav: "Book a Free Consult" },
-      secondary: { href: "#individuals", text: "See private sessions" },
-      other: "org", otherText: "Booking for a community or workplace?"
+      forText: "You, at any age",
+      dose: "A free 30-minute assessment to start",
+      ind: "Stiff, sore, unsteady, or ready to get stronger? Personal training, assisted stretch and corrective exercise, in the gym, at home or online.",
+      primary: { href: "#book", text: "Book a free assessment", nav: "Book a Free Consult", svc: "assessment" },
+      secondary: { href: "#training", text: "See private training" }
+    },
+    care: {
+      forText: "Your child, or someone you care for",
+      dose: "A free 15-minute consult to start",
+      ind: "Youth athletes, kids and young adults in adaptive programs, or a parent who needs support. Sessions are adapted to each body, with you kept in the loop.",
+      primary: { href: "#book", text: "Book a free consult", nav: "Book a Free Consult", svc: "youth" },
+      secondary: { href: "#youth", text: "See youth & adaptive" }
     }
   };
 
@@ -116,10 +125,10 @@
     $("[data-r=for]", pad).textContent = P.forText;
     $("[data-r=dose]", pad).textContent = P.dose;
     $("[data-r=ind]", pad).textContent = P.ind;
-    var a1 = $("[data-r=primary]", pad), a2 = $("[data-r=secondary]", pad), sw = $("[data-r=switch]", pad);
+    var a1 = $("[data-r=primary]", pad), a2 = $("[data-r=secondary]", pad);
     a1.href = P.primary.href; a1.textContent = P.primary.text;
+    if (P.primary.svc) a1.dataset.svc = P.primary.svc; else delete a1.dataset.svc;
     a2.href = P.secondary.href; a2.textContent = P.secondary.text;
-    sw.textContent = P.otherText; sw.dataset.go = P.other;
     if (!animate) pad.dataset.chosen = "";
     else {
       // Restart the fill-in animation
@@ -132,10 +141,11 @@
     $$(".path-btn", pad).forEach(function (b) {
       b.addEventListener("click", function () { setPath(b.dataset.path, true); $("[data-r=primary]", pad).focus({ preventScroll: true }); });
     });
-    $("[data-r=switch]", pad).addEventListener("click", function (e) { setPath(e.currentTarget.dataset.go, true); });
-    $("[data-r=restart]", pad).addEventListener("click", function () {
+    function restart() {
       delete pad.dataset.chosen; delete document.body.dataset.path; $(".rx-title", pad).textContent = "Who is this for?"; $(".path-btn", pad).focus();
-    });
+    }
+    $("[data-r=switch]", pad).addEventListener("click", restart);
+    $("[data-r=restart]", pad).addEventListener("click", restart);
     $$("[data-nav-path]").forEach(function (a) { a.addEventListener("click", function () { setPath(a.dataset.navPath, false); }); });
     var saved = store.get("cws-path");
     if (saved && PATHS[saved]) setPath(saved, false);
@@ -261,31 +271,70 @@
   }
 
   /* ---------- Booking (Square) ---------- */
+  // Links that depend on a Square URL are only created once the URL exists in config.js,
+  // so the page never ships a dead "#" link.
+  var SQ = C.square || {};
   var bookForm = $("#book-services");
+  function selectService(v) {
+    var r = bookForm && $('input[name=svc][value="' + v + '"]', bookForm);
+    if (r) { r.checked = true; r.dispatchEvent(new Event("change", { bubbles: true })); }
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-svc]"); if (a) selectService(a.dataset.svc);
+  });
   if (bookForm) {
-    var SQ = C.square || {};
     var panel = $("#book-panel");
+    var goSlot = $("[data-b=go-slot]", panel), frame = $("[data-b=frame]", panel), off = $("[data-b=offline]", panel);
     function showService() {
       var r = $("input[name=svc]:checked", bookForm); if (!r) return;
       var url = (SQ.services && SQ.services[r.value]) || SQ.bookingUrl;
       $("[data-b=title]", panel).textContent = r.dataset.title;
       $("[data-b=meta]", panel).textContent = r.dataset.meta;
-      var go = $("[data-b=go]", panel), frame = $("[data-b=frame]", panel), off = $("[data-b=offline]", panel);
       if (url) {
-        go.hidden = false; go.href = url; off.hidden = true;
+        goSlot.innerHTML = '<a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Choose a time</a>';
+        off.hidden = true;
         frame.hidden = window.innerWidth < 960; // embedded scheduler on desktop, new tab on phones
         if (!frame.hidden && frame.dataset.src !== url) { frame.src = url; frame.dataset.src = url; }
       } else {
-        go.hidden = true; frame.hidden = true; off.hidden = false;
+        goSlot.innerHTML = ""; frame.hidden = true; off.hidden = false;
       }
     }
     bookForm.addEventListener("change", showService);
     showService();
-    var payLink = $("#pay-packages");
-    if (payLink) { if (SQ.payments && SQ.payments.packages) payLink.href = SQ.payments.packages; else payLink.hidden = true; }
-    var inv = $("#pay-invoice");
-    if (inv) { if (SQ.payments && SQ.payments.invoice) inv.href = SQ.payments.invoice; else inv.hidden = true; }
   }
+  var PAY = { packages: "Buy a session package", invoice: "Pay a Square invoice" };
+  $$("[data-pay]").forEach(function (slot) {
+    var url = SQ.payments && SQ.payments[slot.dataset.pay];
+    if (url) slot.innerHTML = '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + PAY[slot.dataset.pay] + '</a>';
+    else slot.remove();
+  });
+
+  /* ---------- Organization tabs ---------- */
+  var orgTabs = $$(".org-tabs [role=tab]");
+  function selectOrg(tab, focus) {
+    orgTabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  orgTabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { selectOrg(t); });
+    t.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (n) { e.preventDefault(); selectOrg(orgTabs[(i + n + orgTabs.length) % orgTabs.length], true); }
+    });
+  });
+  $$("[data-org-tab]").forEach(function (a) {
+    a.addEventListener("click", function () { var t = $("#tab-" + a.dataset.orgTab); if (t) selectOrg(t); });
+  });
+  // Pre-fill the proposal form's organization type
+  $$("[data-org-type]").forEach(function (a) {
+    a.addEventListener("click", function () { var sel = $("#p-type"); if (sel) sel.value = a.dataset.orgType; });
+  });
+  var hashTab = { "#corporate": "corporate", "#first-responders": "responders", "#senior-living": "senior" }[location.hash];
+  if (hashTab && $("#tab-" + hashTab)) { selectOrg($("#tab-" + hashTab)); $("#organizations").scrollIntoView(); }
 
   /* ---------- Generic form sender (non-health forms only) ---------- */
   function sendForm(form, endpoint, okMsg) {
@@ -366,12 +415,17 @@
     if (G.rating) {
       rating.innerHTML = '<span class="num">' + Number(G.rating).toFixed(1) + '</span><div><div class="stars" aria-hidden="true">' + "★★★★★".slice(0, Math.round(G.rating)) + '</div><span>' + (G.reviewCount || "") + ' Google reviews</span></div>';
       rating.setAttribute("aria-label", "Rated " + G.rating + " out of 5 on Google");
-    } else rating.hidden = true;
+      rating.hidden = false;
+    }
     rv.innerHTML = (G.reviews || []).map(function (r) {
       return '<figure class="review"><div class="stars" aria-label="' + r.rating + ' out of 5 stars">' + "★★★★★".slice(0, r.rating) + '</div><blockquote>' + esc(r.text) + '</blockquote><cite>' + esc(r.name) + (r.when ? ", " + esc(r.when) : "") + ' on Google</cite></figure>';
-    }).join("") || '<p class="review">Reviews from Tavia\'s Google Business Profile appear here. Worked with her? Your words help a neighbor decide.</p>';
-    $$("[data-g=profile]").forEach(function (a) { if (G.profileUrl) a.href = G.profileUrl; else a.hidden = true; });
-    $$("[data-g=write]").forEach(function (a) { if (G.writeReviewUrl) a.href = G.writeReviewUrl; else a.hidden = true; });
+    }).join("") || '<p class="review">Client reviews from Tavia\'s Google Business Profile will appear here.</p>';
+    var gl = $("[data-g-links]");
+    if (gl) {
+      gl.innerHTML = (G.profileUrl ? '<a class="btn ghost small" href="' + esc(G.profileUrl) + '" target="_blank" rel="noopener">See all reviews on Google</a>' : '') +
+        (G.writeReviewUrl ? '<a class="btn ghost small" href="' + esc(G.writeReviewUrl) + '" target="_blank" rel="noopener">Leave a review</a>' : '');
+      if (!gl.innerHTML) gl.remove();
+    }
   }
   var areas = $("#areas");
   if (areas && B.serviceArea) areas.innerHTML = B.serviceArea.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("");

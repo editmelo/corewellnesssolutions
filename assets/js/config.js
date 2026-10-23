@@ -9,12 +9,12 @@ window.CWS_CONFIG = {
     name: "Core Wellness Solutions",
     owner: "Tavia",
     founder: "Quatavia \"Tavia\" Love",
-    phone: "317-665-3554",
-    email: "tavia.corewellnesssolutions@gmail.com",   // swap for a domain email once set up
+    phone: "(317) 665-3554",
+    email: "tavia.corewellnesssolutions@gmail.com",   // TODO: swap for the new Square business email (also hard-coded in the HTML footers and JSON-LD)
     instagram: "https://www.instagram.com/corewellness.llc/",
     city: "Avon",
     state: "IN",
-    serviceArea: ["Avon", "Plainfield", "Brownsburg", "Danville", "Pittsboro", "West Indianapolis"]
+    serviceArea: ["Avon", "Plainfield", "Brownsburg", "Danville", "Speedway", "West Indianapolis"]
   },
 
   // Square Appointments + Square payment links
@@ -24,10 +24,13 @@ window.CWS_CONFIG = {
     // Optional: per-service booking links (fall back to bookingUrl)
     services: {
       consult: "",        // Free 15-minute consult
-      pass: "",           // Priority Stretch Pass (complimentary 20 min)
-      stretch: "",        // Assisted stretch session
-      balance: "",        // Fall prevention & balance session
-      community: ""       // Community program walkthrough
+      assessment: "",     // Priority Training Assessment (free, 30 min)
+      pass: "",           // Priority Stretch Pass (free, 20 min)
+      training: "",       // Personal Training Session
+      stretch: "",        // Assisted Stretch Session
+      corrective: "",     // Corrective Exercise Session
+      youth: "",          // Youth or Adaptive Session
+      community: ""       // Organization walkthrough
     },
     // Square Online Checkout payment links for packages / invoices
     payments: {
@@ -78,6 +81,12 @@ window.CWS_CONFIG = {
     { id: "agreement", group: "first-visit", step: 3, ready: false,
       title: "Client Service Agreement", file: "assets/forms/cws-client-service-agreement.pdf", thumb: "assets/forms/thumbs/cws-client-service-agreement.jpg", pages: 2,
       who: "Private studio packages", desc: "Your package, price, scheduling and the 24-hour cancellation policy." },
+    { id: "minor-waiver", group: "minors", step: 1, ready: false,
+      title: "Minor Waiver", file: "assets/forms/cws-minor-waiver.pdf", thumb: "assets/forms/thumbs/cws-minor-waiver.jpg", pages: 2,
+      who: "Clients under 18", desc: "Signed by a parent or legal guardian before a youth or adaptive session." },
+    { id: "parent-consent", group: "minors", step: 2, ready: false,
+      title: "Parent Consent Form", file: "assets/forms/cws-parent-consent.pdf", thumb: "assets/forms/thumbs/cws-parent-consent.jpg", pages: 1,
+      who: "Clients under 18", desc: "Permission for hands-on assisted stretch, plus emergency contacts and anything we should know about your child." },
     { id: "media", group: "optional", ready: false,
       title: "Photo, Video & Testimonial Release", file: "assets/forms/cws-media-release.pdf", thumb: "assets/forms/thumbs/cws-media-release.jpg", pages: 2,
       who: "Optional", desc: "Choose exactly what Core Wellness may share, from photos to testimonials. Change your mind any time." },
@@ -91,8 +100,9 @@ window.CWS_CONFIG = {
 
   // Event board (index teaser + clipboard page). Remove `sample: true` on real events.
   events: [
-    { id: "ev1", sample: true, date: "2026-10-14T10:00", title: "Chair mobility class", place: "Community room, Avon", seats: 14, note: "Seated, all levels. Water bottle recommended." },
-    { id: "ev2", sample: true, date: "2026-10-21T13:30", title: "Fall prevention screening day", place: "Senior living partner, Plainfield", seats: 10, note: "Ten-minute individual balance screens." },
-    { id: "ev3", sample: true, date: "2026-11-04T09:00", title: "Workplace stretch break", place: "On-site, Hendricks County", seats: 25, note: "Fifteen minutes, done in work clothes." }
+    { id: "ev1", sample: true, date: "2026-11-06T10:00", title: "Chair mobility class", place: "Community room, Avon", seats: 14, note: "Seated, all levels. Water bottle recommended." },
+    { id: "ev2", sample: true, date: "2026-11-12T13:30", title: "Fall prevention screening day", place: "Senior living partner, Plainfield", seats: 10, note: "Ten-minute individual balance screens." },
+    { id: "ev3", sample: true, date: "2026-11-18T09:00", title: "Corporate Stretch Pop-Up", place: "On-site, Hendricks County", seats: 25, note: "Ten-minute express stretches, done in work clothes." },
+    { id: "ev4", sample: true, date: "2026-12-05T10:00", title: "Adaptive stretch open session", place: "Avon", seats: 8, note: "For kids and young adults with disabilities. Caregivers welcome." }
   ]
 };

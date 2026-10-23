@@ -26,19 +26,25 @@ Preview locally: `npx serve .` from this folder, then open the address it prints
 ## Local SEO in place
 LocalBusiness JSON-LD (areaServed for Hendricks County cities), geo meta tags, descriptive titles and meta descriptions, a sitemap, and the service-area list. After launch: claim and verify the Google Business Profile, keep NAP (name, address, phone) identical everywhere, and add the site URL to the profile.
 
-## Slideshow photos (placeholders)
-`assets/img/slides/slide-1/2/3.jpg` (plus `-sm` versions for phones) are free Unsplash photos by Centre for Ageing Better (Unsplash License, commercial use allowed):
-- slide-1: https://unsplash.com/photos/XDH1y3RTYyI
-- slide-2: https://unsplash.com/photos/kB4FXX1KXhQ
-- slide-3: https://unsplash.com/photos/oFQHh4jBREc (mirrored in CSS with `.flip-x`)
+## Photos (stock placeholders until Tavia's content day)
+Free Unsplash photos (Unsplash License, commercial use allowed), chosen to show a range of ages, races, body types and abilities:
+- `slides/slide-welcome`: https://unsplash.com/photos/Ri9fa7m6wc8 (Eric Oliveira), also used in `og-image.jpg`
+- `slides/slide-organizations`, `cards/senior-living`: https://unsplash.com/photos/kB4FXX1KXhQ (Centre for Ageing Better)
+- `slides/slide-training`, `cards/gym`: https://unsplash.com/photos/R0y_bEUjiOM (Jonathan Borba)
+- `slides/slide-youth`, `cards/adaptive`: https://unsplash.com/photos/h-1ODGL1DXs (nader saremi)
+- `cards/corporate`: https://unsplash.com/photos/J1L6AEZbZBE (Olek Buzunov)
+- `cards/responders`: https://unsplash.com/photos/q40XEHz-MLs (Matt C)
+- `cards/youth`: https://unsplash.com/photos/jM0sC7ttmRE (April Walker)
+- `cards/in-home`: https://unsplash.com/photos/AQOwYlKAGrg (Marc Pell)
+- `cards/virtual`: https://unsplash.com/photos/02_PUCjs7pw (Vitaly Gariev)
 
-Replace them with real photos of Tavia's sessions when available: same filenames, landscape, about 1800px wide for the large file and 900px for `-sm`. Update the `alt` text in `index.html`, and remove `flip-x` from slide 3.
+To swap in real photos, keep the same file names and sizes (slides about 1800px wide plus 900px `-sm` copies; cards 800x600) and update the `alt` text in `index.html`. Tavia's portrait goes in the Meet Tavia section: replace the `.photo-slot` block with an `<img>` (portrait, about 900x1125).
 
 ## Client forms (`assets/forms/`)
 Live now: Client Intake & Assessment, Services One-Sheet, Senior Living Proposal (its pricing also appears in the Communities section).
 
-Not published yet (they carry a "DRAFT · FOR ATTORNEY REVIEW" stamp): Liability Waiver, Client Service Agreement, Media Release. They show as "Coming soon" on the forms page, and their PDFs are deliberately **not** in the site folder. To publish one:
-1. Save the attorney-approved PDF as `assets/forms/cws-liability-waiver.pdf` (or `cws-client-service-agreement.pdf` / `cws-media-release.pdf`).
+Not published yet: Liability Waiver, Client Service Agreement and Media Release (they carry a "DRAFT · FOR ATTORNEY REVIEW" stamp), plus the Minor Waiver and Parent Consent Form (no PDFs yet). They show as "Coming soon" on the forms page, and their PDFs are deliberately **not** in the site folder. To publish one:
+1. Save the attorney-approved PDF under the file name set in `config.js` (e.g. `assets/forms/cws-liability-waiver.pdf`, `cws-minor-waiver.pdf`, `cws-parent-consent.pdf`).
 2. Add a page-1 thumbnail at `assets/forms/thumbs/<same name>.jpg` (about 420px wide).
 3. Set `ready: true` for that document in `config.js`.
 
@@ -52,3 +58,18 @@ Kept off the site on purpose: Mutual NDA, Service Trade Agreement, Brand Guide, 
 - **Two intentional exceptions:**
   1. Body links and small labels use Deep Teal instead of Teal or Green, because #4A9BB0 and #5FA36F are too light to read as text on white (they fail WCAG AA contrast). Green and Teal are still used for bars, dots and icons.
   2. The Rx cards keep the colors of Tavia's printed Rx cards (gold, slate, clay), so they match what clients hold in their hands.
+
+## Connecting Tavia's domain (bought through Square)
+The site stays on Vercel; the domain stays registered at Square. Don't change nameservers, because that would take her Square business email offline.
+1. In Vercel: Project > Settings > Domains > add `yourdomain.com` and `www.yourdomain.com`. Vercel shows the exact DNS values to use.
+2. In Square (Tavia's account, or a team login with domain access): Channels > Domains > Manage > Manage domain > DNS Records. Point the root `@` **A** record and the `www` **CNAME** to the values Vercel shows. Leave the MX and TXT records alone, because those run her email.
+3. Wait for DNS (Square says 24 to 48 hours), then confirm both show "Valid" in Vercel.
+4. Find and replace `corewellnesssolutions.revieweditmelo.com` with the new domain across the repo (canonical tags, `og:` tags, JSON-LD, `sitemap.xml`, `robots.txt`), then push.
+5. The `X-Robots-Tag: noindex` header in `vercel.json` only applies to the `*.revieweditmelo.com` review address, so the real domain will be indexed normally.
+
+## Draft 2 still waiting on Tavia
+- New business email: swap it into `config.js`, the footer `mailto:` links, the booking panel and the JSON-LD.
+- The domain name, then the steps above.
+- Her fuller bio from the notes doc. The Meet Tavia section uses a draft built from her one-sheet and brand guide.
+- Private session and package pricing; real photos and her portrait; client testimonials (`google.reviews` in `config.js`); her first 10 Rx cards (`assets/js/rx-data.js`).
+- Minor Waiver and Parent Consent PDFs (attorney-reviewed).
