@@ -12,7 +12,8 @@ window.CWS_CONFIG = {
     phone: "(317) 665-3554",
     email: "tavia.corewellnesssolutions@gmail.com",   // TODO: swap for the new Square business email (also hard-coded in the HTML footers and JSON-LD)
     instagram: "https://www.instagram.com/corewellness.llc/",
-    city: "Avon",
+    city: "Indianapolis",
+    studio: { name: "Brewing Bodies", street: "6204 La Pas Trail", city: "Indianapolis", state: "IN", zip: "46268" },
     state: "IN",
     serviceArea: ["Avon", "Plainfield", "Brownsburg", "Danville", "Speedway", "West Indianapolis"]
   },
@@ -55,7 +56,7 @@ window.CWS_CONFIG = {
   },
 
   google: {
-    mapsQuery: "Avon, Indiana",       // Replace with the exact Google Business Profile name + city
+    mapsQuery: "Brewing Bodies, 6204 La Pas Trail, Indianapolis, IN 46268",
     profileUrl: "",                   // Link to the Google Business Profile
     writeReviewUrl: "",               // "Get more reviews" link from the profile dashboard
     rating: null,                     // e.g. 5.0
@@ -65,6 +66,17 @@ window.CWS_CONFIG = {
     reviews: []
     // { name: "First L.", rating: 5, text: "...", when: "March 2026" }
   },
+
+  // Client testimonials sent by Tavia (shown word for word, with her clients' permission).
+  // featured: true shows that quote as the large card.
+  testimonials: [
+    { name: "Scott", featured: true,
+      text: "Working with Quatavia over the last 8 months has been an absolute game-changer for my overall wellness. Coming in 4 times a month, I've seen a remarkable difference in my body \u2014 the persistent tightness and tension I used to carry are virtually gone. Beyond the incredible studio sessions, Quatavia takes the time to truly educate me on at-home routines and long-term body care so I can keep making progress between appointments. Her expertise, guidance, and genuine care for my health have made a massive impact on how I feel every single day. I couldn't recommend Quatavia more highly!" },
+    { name: "Ms. Lori",
+      text: "Working out with Tavia is great! She's motivating, challenging and positive as a personal trainer. I appreciate how she tailors my workouts to fit my personal needs. She definitely pushes me each time I enter the studio!" },
+    { name: "Zach",
+      text: "Quatavia has helped me and my family. I had both hips replaced and the therapy that I had made a huge improvement. She has helped my niece and nephew, that have severe disabilities. I would recommend Quatavia to any person, young and old." }
+  ],
 
   // Downloadable PDFs (/forms + Communities section).
   // ready: false shows the form as "coming soon" and does not link it.
@@ -98,11 +110,8 @@ window.CWS_CONFIG = {
       who: "Directors & administrators", desc: "Services, the pilot program and monthly program pricing for senior living communities." }
   ],
 
-  // Event board (index teaser + clipboard page). Remove `sample: true` on real events.
-  events: [
-    { id: "ev1", sample: true, date: "2026-11-06T10:00", title: "Chair mobility class", place: "Community room, Avon", seats: 14, note: "Seated, all levels. Water bottle recommended." },
-    { id: "ev2", sample: true, date: "2026-11-12T13:30", title: "Fall prevention screening day", place: "Senior living partner, Plainfield", seats: 10, note: "Ten-minute individual balance screens." },
-    { id: "ev3", sample: true, date: "2026-11-18T09:00", title: "Corporate Stretch Pop-Up", place: "On-site, Hendricks County", seats: 25, note: "Ten-minute express stretches, done in work clothes." },
-    { id: "ev4", sample: true, date: "2026-12-05T10:00", title: "Adaptive stretch open session", place: "Avon", seats: 8, note: "For kids and young adults with disabilities. Caregivers welcome." }
-  ]
+  // Event board (home teaser + /clipboard). Leave empty to show "Stay tuned" and a
+  // "Request an event" call to action instead of a list.
+  // Format: { id: "ev1", date: "2026-12-05T10:00", title: "...", place: "...", seats: 12, note: "..." }
+  events: []
 };

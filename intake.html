@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Client Intake & Assessment | Core Wellness Solutions</title>
-  <meta name="description" content="Complete your Core Wellness Solutions client intake and assessment before your first session. Sent securely; only Tavia sees it.">
+  <meta name="description" content="Complete your Core Wellness Solutions client intake and assessment before your first session. Sent securely; only your coach sees it.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#2F6B6B">
   <meta property="og:type" content="website">
@@ -251,7 +251,7 @@
     // Health data only goes to a BAA-covered endpoint. Nothing is stored in the browser.
     if (!I.endpoint || !I.endpointIsHipaaCompliant) {
       status.className = "form-status warn";
-      status.textContent = "Secure online intake isn't switched on yet, so nothing was sent. Tavia will go over this form with you in person" + (B.phone ? ", or call " + B.phone : "") + ".";
+      status.textContent = "Secure online intake isn't switched on yet, so nothing was sent. We\'ll go over this form with you in person" + (B.phone ? ", or call " + B.phone : "") + ".";
       console.warn("[CWS] Intake blocked: set intake.endpoint and endpointIsHipaaCompliant in assets/js/config.js");
       return;
     }
@@ -260,7 +260,7 @@
       .then(function (r) {
         if (!r.ok) throw new Error(r.status);
         form.reset();
-        form.innerHTML = '<div class="panel"><h2 style="font-size:1.6rem" tabindex="-1" id="done">You\'re all set</h2><p>Tavia has your intake. She\'ll review it before your first session, where you\'ll also sign the full liability waiver.</p><a class="btn" href="/">Back to the site</a></div>';
+        form.innerHTML = '<div class="panel"><h2 style="font-size:1.6rem" tabindex="-1" id="done">You\'re all set</h2><p>We have your intake and will review it before your first session, where you\'ll also sign the full liability waiver.</p><a class="btn" href="/">Back to the site</a></div>';
         document.getElementById("done").focus();
       })
       .catch(function () {

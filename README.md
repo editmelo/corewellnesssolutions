@@ -19,7 +19,7 @@ Preview locally: `npx serve .` from this folder, then open the address it prints
 3. **Forms**: `forms.proposal` and `forms.seat` take any POST endpoint (e.g. Formspree). These are non-health forms only.
 4. **Intake (HIPAA)**: use a provider that signs a BAA (IntakeQ, Jotform HIPAA, Hushmail, SimplePractice). Either paste its embed URL into `intake.embedUrl` (recommended), or set `intake.endpoint` and `endpointIsHipaaCompliant: true`. Until then the built-in form refuses to send.
 5. **Google**: `google.mapsQuery` (the exact Business Profile name), `profileUrl`, `writeReviewUrl`, rating/count, and real reviews (or swap in a widget such as Elfsight or Trustindex).
-6. **Events**: replace the sample events and delete `sample: true`.
+6. **Events**: add real events to `events` in `config.js` (format in the comment there). While the list is empty, the site shows "Stay tuned for future events" and a "Request an event" link that opens the proposal form with "one-time event" ticked; the save-a-seat form only appears once an event exists.
 7. **Domain**: replace `www.corewellnesssolutions.com` in the canonical tags, JSON-LD, `robots.txt` and `sitemap.xml`.
 8. **Content review for Tavia**: Rx cards ST-01, ST-03, ST-04, BR-02, BA-01, BA-02, SR-01, SR-02, AF-02 and AF-03 are drafts (`assets/js/rx-data.js`). The waiver and privacy text need attorney review.
 
@@ -71,5 +71,10 @@ The site stays on Vercel; the domain stays registered at Square. Don't change na
 - New business email: swap it into `config.js`, the footer `mailto:` links, the booking panel and the JSON-LD.
 - The domain name, then the steps above.
 - Her fuller bio from the notes doc. The Meet Tavia section uses a draft built from her one-sheet and brand guide.
-- Private session and package pricing; real photos and her portrait; client testimonials (`google.reviews` in `config.js`); her first 10 Rx cards (`assets/js/rx-data.js`).
+- Private session and package pricing; real photos and her portrait; her first 10 Rx cards (`assets/js/rx-data.js`).
 - Minor Waiver and Parent Consent PDFs (attorney-reviewed).
+
+## Content notes (Nov 2026)
+- **Studio:** in-person training and stretch sessions are at Brewing Bodies, 6204 La Pas Trail, Indianapolis, IN 46268 (`business.studio` and `google.mapsQuery` in `config.js`; also in the hero, footer, In-Person Studio card, FAQ, Visit the studio block, JSON-LD and `og-image.jpg`). In-home and on-site visits keep the `serviceArea` list.
+- **Testimonials:** `testimonials` in `config.js`, shown word for word. `featured: true` makes one the large card. Google reviews (`google.reviews`) show after them with stars and "on Google".
+- **Voice:** administrative copy uses we/us/our. Tavia's name stays on the Rx pad, the Rx cards and the Meet Tavia section.

@@ -356,24 +356,32 @@
     });
   }
   var forms = C.forms || {};
-  if ($("#proposal-form")) sendForm($("#proposal-form"), forms.proposal, "Request received. Tavia will reach out within two business days to set up a discovery call.");
+  if ($("#proposal-form")) sendForm($("#proposal-form"), forms.proposal, "Request received. We'll reach out within two business days to set up a discovery call.");
   if ($("#seat-form")) sendForm($("#seat-form"), forms.seat, "Seat saved. You'll get a confirmation shortly.");
 
-  /* ---------- Events teaser ---------- */
-  var evList = $("[data-events]");
-  if (evList) {
-    var limit = +evList.dataset.events || 99;
-    var now = new Date(); now.setHours(0, 0, 0, 0);
-    var evs = (C.events || []).filter(function (e) { return new Date(e.date) >= now; }).sort(function (a, b) { return new Date(a.date) - new Date(b.date); }).slice(0, limit);
+  /* ---------- Events ---------- */
+  // With no events in config.js, lists show "Stay tuned" and a request-an-event link
+  // instead of placeholders, and anything marked data-when-events stays hidden.
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  var upcoming = (C.events || []).filter(function (e) { return new Date(e.date) >= now; }).sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+  $$("[data-when-events]").forEach(function (el) { el.hidden = !upcoming.length; });
+  $$("[data-when-no-events]").forEach(function (el) { el.hidden = !!upcoming.length; });
+  $$("[data-events]").forEach(function (evList) {
+    var evs = upcoming.slice(0, +evList.dataset.events || 99);
     evList.innerHTML = evs.length ? evs.map(function (e) {
       var d = new Date(e.date);
       return '<li class="event"><div class="event-date"><small>' + d.toLocaleDateString("en-US", { month: "short" }) + '</small><b>' + d.getDate() + '</b></div>' +
-        '<div><h4>' + esc(e.title) + (e.sample ? '<span class="sample-tag">Example</span>' : '') + '</h4>' +
+        '<div><h4>' + esc(e.title) + '</h4>' +
         '<p>' + d.toLocaleDateString("en-US", { weekday: "long" }) + ', ' + d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) + '. ' + esc(e.place) + '</p></div></li>';
-    }).join("") : '<li class="event"><div></div><div><p>New sessions post here first. Check back soon or book a private session below.</p></div></li>';
-    var seatSel = $("#seat-event");
-    if (seatSel) seatSel.innerHTML = evs.map(function (e) { return '<option value="' + esc(e.id) + '">' + esc(e.title) + ' (' + new Date(e.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) + ')</option>'; }).join("");
-  }
+    }).join("") : evList.dataset.empty === "short"
+      ? '<li class="event-empty"><h4>No events on the board yet.</h4><p>Check back soon. New dates post here and on Instagram first.</p></li>'
+      : '<li class="event-empty"><h4>Stay tuned for future events.</h4><p>New classes, pop-ups and community events post here and on Instagram first. Want one for your community, team or station? <a href="/#proposal" data-request-event>Contact us to request an event</a>.</p></li>';
+  });
+  var seatSel = $("#seat-event");
+  if (seatSel) seatSel.innerHTML = upcoming.map(function (e) { return '<option value="' + esc(e.id) + '">' + esc(e.title) + ' (' + new Date(e.date).toLocaleDateString("en-US", { month: "short", day: "numeric" }) + ')</option>'; }).join("");
+  // "Request an event" ticks "one-time event" on the proposal form
+  function tickEvent() { var box = $('#proposal-form input[name=interest][value="One-time event"]'); if (box) box.checked = true; }
+  document.addEventListener("click", function (e) { if (e.target.closest("[data-request-event]")) tickEvent(); });
 
   /* ---------- Downloadable documents ---------- */
   var DL = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -384,7 +392,7 @@
         '<div class="doc-thumb doc-thumb-soon" aria-hidden="true"><span>Coming soon</span></div>' +
         '<div class="doc-body"><div class="doc-tags">' + head + '</div>' +
         '<h3>' + esc(d.title) + '</h3><p>' + esc(d.desc) + '</p>' +
-        '<p class="doc-soon-note">The printable version is being finalized. Tavia will bring a copy to your first session.</p></div></article>';
+        '<p class="doc-soon-note">The printable version is being finalized. We\'ll bring a copy to your first session.</p></div></article>';
     }
     var name = d.file.split("/").pop();
     return '<article class="doc">' +
@@ -408,7 +416,7 @@
   /* ---------- Google reviews + map ---------- */
   var G = C.google || {};
   var map = $("#gmap");
-  if (map) map.src = "https://maps.google.com/maps?q=" + encodeURIComponent(G.mapsQuery || "Avon, Indiana") + "&z=12&output=embed";
+  if (map) map.src = "https://maps.google.com/maps?q=" + encodeURIComponent(G.mapsQuery || "Indianapolis, Indiana") + "&z=14&output=embed";
   var rv = $("#reviews");
   if (rv) {
     var rating = $("#rating");
@@ -417,9 +425,13 @@
       rating.setAttribute("aria-label", "Rated " + G.rating + " out of 5 on Google");
       rating.hidden = false;
     }
-    rv.innerHTML = (G.reviews || []).map(function (r) {
-      return '<figure class="review"><div class="stars" aria-label="' + r.rating + ' out of 5 stars">' + "★★★★★".slice(0, r.rating) + '</div><blockquote>' + esc(r.text) + '</blockquote><cite>' + esc(r.name) + (r.when ? ", " + esc(r.when) : "") + ' on Google</cite></figure>';
-    }).join("") || '<p class="review">Client reviews from Tavia\'s Google Business Profile will appear here.</p>';
+    // Testimonials Tavia collected directly (no stars), then any Google reviews
+    var quotes = (C.testimonials || []).slice().sort(function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0); }).map(function (t) {
+      return '<figure class="quote' + (t.featured ? ' is-featured' : '') + '"><blockquote><p>' + esc(t.text) + '</p></blockquote><figcaption>' + esc(t.name) + '</figcaption></figure>';
+    }).concat((G.reviews || []).map(function (r) {
+      return '<figure class="quote"><div class="stars" aria-label="' + r.rating + ' out of 5 stars">' + "★★★★★".slice(0, r.rating) + '</div><blockquote><p>' + esc(r.text) + '</p></blockquote><figcaption>' + esc(r.name) + (r.when ? ", " + esc(r.when) : "") + ' on Google</figcaption></figure>';
+    }));
+    rv.innerHTML = quotes.join("") || '<p class="review">Client reviews will appear here.</p>';
     var gl = $("[data-g-links]");
     if (gl) {
       gl.innerHTML = (G.profileUrl ? '<a class="btn ghost small" href="' + esc(G.profileUrl) + '" target="_blank" rel="noopener">See all reviews on Google</a>' : '') +

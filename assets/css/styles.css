@@ -741,3 +741,27 @@ body { padding-bottom: 76px; }
   .org-tabs [role=tab] { min-height: 46px; padding: 8px 16px; border: 2px solid var(--line); border-radius: 999px; margin: 0; background: var(--card); font-size: 1rem; }
   .org-tabs [role=tab][aria-selected="true"] { border-color: var(--deep-teal); background: var(--deep-teal); color: #fff; }
 }
+
+/* =====================  Testimonials, studio, events (Nov 2026)  ===================== */
+.quotes { display: grid; gap: 20px; }
+@media (min-width: 860px) { .quotes { grid-template-columns: 1fr 1fr; gap: 22px; } .quote.is-featured { grid-column: 1 / -1; } }
+.quote { position: relative; margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px 24px; }
+.quote::before { content: "\201C"; position: absolute; top: -6px; left: 20px; font: 500 4.2rem/1 var(--serif); color: var(--green); }
+.quote blockquote { margin: 0; }
+.quote blockquote p { margin: 0 0 14px; font: 400 1.12rem/1.6 var(--serif); color: var(--ink); }
+.quote.is-featured { border-top: 6px solid var(--deep-teal); padding: 36px 32px 28px; }
+.quote.is-featured blockquote p { font-size: clamp(1.2rem, 2vw, 1.4rem); line-height: 1.55; max-width: 72ch; }
+.quote figcaption { font: 600 .95rem var(--sans); color: var(--deep-teal); letter-spacing: .02em; }
+.quote .stars { margin-bottom: 8px; }
+
+.visit { display: grid; gap: 28px; margin-top: 56px; align-items: center; }
+@media (min-width: 900px) { .visit { grid-template-columns: 1.15fr 1fr; gap: 56px; } }
+.visit-copy h3 { font-size: 1.6rem; margin-bottom: 10px; }
+.visit-copy address { font-style: normal; font-size: 1.1rem; line-height: 1.6; margin-bottom: 18px; }
+.visit-area { margin: 22px 0 0; color: var(--muted); }
+
+.event-empty { list-style: none; padding: 6px 0 4px; }
+.event-empty h4 { margin: 0 0 6px; font: 500 1.25rem var(--serif); color: var(--deep-teal); }
+.event-empty p { margin: 0; color: var(--muted); font-size: 1rem; }
+.request-event h2 { color: var(--deep-teal); }
+.board-grid > .board { align-self: start; }

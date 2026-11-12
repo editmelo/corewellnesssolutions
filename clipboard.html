@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Events & Live Sessions | Core Wellness Solutions, Avon IN</title>
-  <meta name="description" content="Upcoming chair exercise classes, fall prevention screenings and wellness events from Core Wellness Solutions in Avon and Hendricks County, Indiana. Save a seat or follow along live.">
+  <title>Events & Live Sessions | Core Wellness Solutions, Indianapolis IN</title>
+  <meta name="description" content="Upcoming classes, pop-ups and community events from Core Wellness Solutions in Indianapolis, Indiana. Save a seat or follow along live.">
   <link rel="canonical" href="https://corewellnesssolutions.revieweditmelo.com/clipboard">
   <meta name="theme-color" content="#2F6B6B">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Core Wellness Solutions">
   <meta property="og:url" content="https://corewellnesssolutions.revieweditmelo.com/clipboard">
-  <meta property="og:title" content="Events and Live Sessions | Core Wellness Solutions, Avon IN">
+  <meta property="og:title" content="Events and Live Sessions | Core Wellness Solutions, Indianapolis IN">
   <meta property="og:description" content="Upcoming classes, pop-ups and community events from Core Wellness Solutions, plus a live session board with big-print moves and a timer.">
   <meta property="og:image" content="https://corewellnesssolutions.revieweditmelo.com/assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -88,7 +88,7 @@
 <main id="main" class="wrap">
   <div class="page-head">
     <h1>The digital clipboard</h1>
-    <p>See what's coming up and save a seat, or follow along with a live class on any screen.</p>
+    <p>See what's coming up, request an event for your group, or follow along with a live class on any screen.</p>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Clipboard views">
@@ -102,13 +102,22 @@
       <div class="board">
         <div class="sheet">
           <h2 style="font-size:1.6rem;margin-bottom:4px">Upcoming sessions</h2>
-          <p class="sheet-sub">Times are Eastern. Open to residents, families and the public unless noted. New dates post first on <a href="https://www.instagram.com/corewellness.llc/" target="_blank" rel="noopener">Instagram</a>.</p>
-          <ul class="event-list" data-events="12" id="board-events"></ul>
+          <p class="sheet-sub" data-when-events hidden>Times are Eastern. Open to residents, families and the public unless noted. New dates post first on <a href="https://www.instagram.com/corewellness.llc/" target="_blank" rel="noopener">Instagram</a>.</p>
+          <ul class="event-list" data-events="12" data-empty="short" id="board-events"></ul>
         </div>
       </div>
 
       <div>
-        <form class="panel form" id="seat-form" aria-labelledby="seat-title">
+        <div class="panel request-event" data-when-no-events>
+          <h2 style="font-size:1.6rem;margin-bottom:6px">Stay tuned for future events</h2>
+          <p style="color:var(--muted)">New classes, pop-ups and community events post here and on <a href="https://www.instagram.com/corewellness.llc/" target="_blank" rel="noopener">Instagram</a> first.</p>
+          <p>Want an event for your community, team or station? Contact us and we'll plan one around your group.</p>
+          <div class="btn-row">
+            <a class="btn" href="/#proposal" data-request-event>Request an event</a>
+            <a class="btn ghost" href="tel:+13176653554" data-phone>Call us</a>
+          </div>
+        </div>
+        <form class="panel form" id="seat-form" aria-labelledby="seat-title" data-when-events hidden>
           <h2 id="seat" style="font-size:1.6rem;margin:0"><span id="seat-title">Save a seat</span></h2>
           <div class="field"><label for="seat-event">Event</label><select id="seat-event" name="event" required></select></div>
           <div class="form-grid two">
@@ -123,7 +132,7 @@
 
         <div class="panel" style="margin-top:24px">
           <h2 style="font-size:1.4rem;margin-bottom:4px">Day-of sign-in</h2>
-          <p style="color:var(--muted);font-size:.98rem">For Tavia's tablet at the door. First names only. The list stays on this device until you export or clear it.</p>
+          <p style="color:var(--muted);font-size:.98rem">For the check-in tablet at the door. First names only. The list stays on this device until you export or clear it.</p>
           <form class="signin-row" id="signin-form">
             <label class="sr-only" for="signin-name">First name and last initial</label>
             <div class="field" style="flex:1"><input id="signin-name" type="text" placeholder="First name, last initial" autocomplete="off" maxlength="40"></div>
@@ -185,7 +194,7 @@
 
 <div class="action-bar">
   <a class="btn" href="/#book">Book a session</a>
-  <a class="btn ghost" href="#seat" data-goto-board>Save a seat</a>
+  <a class="btn ghost" href="/#proposal" data-request-event>Request an event</a>
 </div>
 
 <script src="assets/js/config.js"></script>
